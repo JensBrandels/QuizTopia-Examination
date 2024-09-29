@@ -1,0 +1,22 @@
+{
+  "name": "quiztopia-examination",
+  "version": "1.0.0",
+  "description": "QuizTopia",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.658.1",
+    "@aws-sdk/lib-dynamodb": "^3.658.1",
+    "@middy/core": "4.7",
+    "aws-sdk": "^2.1691.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^10.0.0"
+  }
+}
