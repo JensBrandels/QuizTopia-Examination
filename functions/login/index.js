@@ -1,7 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { db } = require("../../services/db");
+// const { db } = require("../../services/db");
 const { sendResponse, sendError } = require("../../responses/index");
+const { getUserByName } = require("../../services/getUser");
 
 async function checkPassword(password, user) {
   console.log("password, user", password, user);
@@ -19,25 +20,11 @@ function signToken(user) {
   return token;
 }
 
-const getUser = async (username) => {
-  console.log("username", username);
-  const { Items } = await db.query({
-    TableName: "QUsersTable",
-    IndexName: "QUsernameIndex",
-    KeyConditionExpression: "username = :username",
-    ExpressionAttributeValues: {
-      ":username": username,
-    },
-  });
-  console.log("QueryItems", Items);
-  return Items[0];
-};
-
 exports.handler = async (event) => {
   try {
     const { username, password } = JSON.parse(event.body);
 
-    const user = await getUser(username);
+    const user = await getUserByName(username);
     console.log("user", user);
 
     if (!user) {

@@ -22,6 +22,7 @@ provider:
         - "dynamodb:Query"
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/QuizTable"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable/index/*"
 
 functions:
@@ -44,6 +45,13 @@ functions:
       - httpApi:
           path: /user
           method: get
+
+  postQuiz:
+    handler: functions/postQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: post
 
 resources:
   Resources:
