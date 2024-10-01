@@ -60,6 +60,13 @@ functions:
           path: /quiz
           method: get
 
+  postQuestion:
+    handler: functions/postQuestion/index.handler
+    events:
+      - httpApi:
+          path: /quiz/question
+          method: post
+
 resources:
   Resources:
     QUsersTable:
