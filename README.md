@@ -2,8 +2,10 @@ QuizTopia
 
 ---- DONE ----
 
-- KRAV
-  Det går att skapa konto och logga in.
+KRAV
+
+Det går att skapa konto och logga in.
+
 - /signup -POST
 - /login -POST
 
