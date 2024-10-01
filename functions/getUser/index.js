@@ -18,7 +18,7 @@ const handler = middy()
         return sendError(404, "User not found");
       }
 
-      return sendResponse({
+      return sendResponse(200, {
         userId: user.userId,
         firstname: user.firstname,
         lastname: user.lastname,

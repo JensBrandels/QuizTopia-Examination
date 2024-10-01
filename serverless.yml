@@ -53,6 +53,13 @@ functions:
           path: /quiz
           method: post
 
+  getAllQuiz:
+    handler: functions/getAllQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: get
+
 resources:
   Resources:
     QUsersTable:

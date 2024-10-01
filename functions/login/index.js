@@ -38,7 +38,7 @@ exports.handler = async (event) => {
 
     const token = signToken(user);
 
-    return sendResponse({ success: true, token: token });
+    return sendResponse(200, { success: true, token: token });
   } catch (error) {
     return sendError(500, error.message);
   }
