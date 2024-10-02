@@ -14,7 +14,6 @@ function signToken(user) {
   const token = jwt.sign({ userId: user.userId }, process.env.SECRET, {
     expiresIn: 3600, // Går ut om 60 min
   });
-  console.log("token", token);
 
   return token;
 }
@@ -23,15 +22,21 @@ exports.handler = async (event) => {
   try {
     const { username, password } = JSON.parse(event.body);
 
+    // Validate that username and password are provided and not empty
+    if (!username || username.trim() === "") {
+      return sendError(400, "Username is required");
+    }
+    if (!password || password.trim() === "") {
+      return sendError(400, "Password is required");
+    }
+
     const user = await getUserByName(username);
-    console.log("user", user);
 
     if (!user) {
       return sendError(401, "Wrong username or password");
     }
 
     const correctPassword = await checkPassword(password, user);
-    console.log("correctPassword", correctPassword);
 
     if (!correctPassword) return sendError(401, "Wrong username or password");
 
