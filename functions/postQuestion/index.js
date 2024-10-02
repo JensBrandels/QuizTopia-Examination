@@ -11,16 +11,18 @@ const handler = middy()
       const userId = event.userId;
       const { quizId, question, answer, location } = JSON.parse(event.body);
 
-      //making sure we have all we need
+      //making sure we have all we need and are not empty strings
       if (
         !quizId ||
         !question ||
         !answer ||
         !location ||
         !location.longitude ||
-        !location.latitude
+        !location.latitude ||
+        question.trim() === "" ||
+        answer.trim() === ""
       ) {
-        return sendError(400, "Missing required fields");
+        return sendError(400, "Missing required fields or empty strings");
       }
 
       //find the quiz inside table here
@@ -44,6 +46,15 @@ const handler = middy()
           403,
           "Permission Denied: You are not the owner of this quiz."
         );
+      }
+
+      // Check for duplicate question
+      const questionExists = quiz.questions.some(
+        (q) => q.question.trim().toLowerCase() === question.trim().toLowerCase()
+      );
+
+      if (questionExists) {
+        return sendError(400, "Question already exists in this quiz.");
       }
 
       //Make the new question
