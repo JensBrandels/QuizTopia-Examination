@@ -11,11 +11,27 @@ const handler = middy()
       const userId = event.userId; // from validated token
       const { quizId, points } = JSON.parse(event.body);
 
-      console.log("Received request to add points:", {
-        quizId,
-        points,
-        userId,
-      });
+      // Validate userId, quizId, and points
+      if (!userId) {
+        return sendError(400, "User ID is required");
+      }
+      if (!quizId || quizId.trim() === "") {
+        return sendError(400, "Quiz ID is required");
+      }
+      if (
+        points === undefined ||
+        points === null ||
+        isNaN(points) ||
+        parseInt(points, 10) < 0
+      ) {
+        return sendError(400, "Points must be a non-negative number");
+      }
+
+      //make sure points is a valid number
+      const parsedPoints = parseInt(points, 10);
+      if (isNaN(parsedPoints) || parsedPoints < 0) {
+        return sendError(400, "Points must be a non-negative number");
+      }
 
       const leaderboardEntry = {
         leaderboardId: uuidv4(),
@@ -23,8 +39,6 @@ const handler = middy()
         userId,
         points,
       };
-
-      console.log("Leaderboard Entry:", leaderboardEntry);
 
       // Store the points in the leaderboard table
       await db.put({
