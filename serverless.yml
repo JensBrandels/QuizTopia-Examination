@@ -41,13 +41,6 @@ functions:
           path: /login
           method: post
 
-  # getUser:
-  #   handler: functions/getUser/index.handler
-  #   events:
-  #     - httpApi:
-  #         path: /user
-  #         method: get
-
   postQuiz:
     handler: functions/postQuiz/index.handler
     events:

@@ -15,7 +15,6 @@ const handler = middy()
       if (!user) {
         return sendError(404, "User not found");
       }
-      console.log("user", user.userId);
       const { quizname } = JSON.parse(event.body);
 
       const newQuiz = {

@@ -11,7 +11,7 @@ Det går att skapa konto och logga in.
 
 Det går att se alla quiz, vad quiz:et heter samt vem som skapat det.
 
-- /quiz -GET ---this is a scan
+- /quiz/leaderboard/{quizId}
 
 Det går att välja ett specifikt quiz och få alla frågor.
 
@@ -24,10 +24,4 @@ Krav med inloggning
 - /quiz -POST
 - /quiz/question - POST
 - /quiz/{quizId} - DELETE
-
------ TODO ----
-
-Leaderboard
-
-/quiz/addpoints/{quizId}
-/quiz/leaderboard/{quizId}
+- /quiz/addpoints/{quizId}
