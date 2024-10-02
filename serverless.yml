@@ -67,6 +67,13 @@ functions:
           path: /quiz/question
           method: post
 
+  getSpecificQuiz:
+    handler: functions/getSpecificQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz/{quizId}
+          method: get
+
 resources:
   Resources:
     QUsersTable:

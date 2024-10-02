@@ -15,6 +15,8 @@ Det går att se alla quiz, vad quiz:et heter samt vem som skapat det.
 
 Det går att välja ett specifikt quiz och få alla frågor.
 
+/quiz/{quizId} - GET
+
 /user --this one is not neccessary - GET
 
 Krav med inloggning
@@ -24,5 +26,4 @@ Krav med inloggning
 
 ----- TODO ----
 
-/quiz/{userId}/{quizId} - GET/QUERY
 /quiz/{quizId} - DELETE
