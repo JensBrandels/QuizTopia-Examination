@@ -23,6 +23,7 @@ provider:
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QuizTable"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/QuizTable/index/*"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/leaderboardTable"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable/index/*"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/leaderboardTable/index/*"
