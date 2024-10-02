@@ -23,7 +23,11 @@ Krav med inloggning
 
 - /quiz -POST
 - /quiz/question - POST
+- /quiz/{quizId} - DELETE
 
 ----- TODO ----
 
-/quiz/{quizId} - DELETE
+Leaderboard
+
+/quiz/addpoints/{quizId}
+/quiz/leaderboard/{quizId}

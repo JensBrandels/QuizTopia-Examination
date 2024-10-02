@@ -23,7 +23,9 @@ provider:
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QuizTable"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/leaderboardTable"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/QUsersTable/index/*"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/leaderboardTable/index/*"
 
 functions:
   signup:
@@ -39,12 +41,12 @@ functions:
           path: /login
           method: post
 
-  getUser:
-    handler: functions/getUser/index.handler
-    events:
-      - httpApi:
-          path: /user
-          method: get
+  # getUser:
+  #   handler: functions/getUser/index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /user
+  #         method: get
 
   postQuiz:
     handler: functions/postQuiz/index.handler
@@ -80,6 +82,20 @@ functions:
       - httpApi:
           path: /quiz/{quizId}
           method: delete
+
+  addPoints:
+    handler: functions/addPoints/index.handler
+    events:
+      - httpApi:
+          path: /leaderboard/addpoints
+          method: post
+
+  getLeaderboard:
+    handler: functions/getLeaderBoard/index.handler
+    events:
+      - httpApi:
+          path: /leaderboard/{quizId}
+          method: get
 
 resources:
   Resources:
@@ -132,7 +148,16 @@ resources:
         AttributeDefinitions:
           - AttributeName: leaderboardId
             AttributeType: S
+          - AttributeName: quizId
+            AttributeType: S
         KeySchema:
           - AttributeName: leaderboardId
             KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: QuizIndex
+            KeySchema:
+              - AttributeName: quizId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
         BillingMode: PAY_PER_REQUEST
