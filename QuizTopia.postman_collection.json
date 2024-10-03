@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "2212d3e7-890e-4d5e-88b2-33739cd8a8ed",
+		"name": "QuizTopia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32658633"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Jens\",\r\n    \"password\": \"Jens\",\r\n    \"email\": \"brandelsjens@gmail.com\",\r\n    \"firstname\": \"Jens\",\r\n    \"lastname\": \"Brandels\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/signup",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Jens\",\r\n    \"password\": \"Jens\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/login",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create quiz with logged in user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZjU2M2FiOS1lM2E0LTQ2NWEtODE2YS04MmQwODBlMThhOTEiLCJpYXQiOjE3Mjc3ODgwMzQsImV4cCI6MTcyNzc5MTYzNH0.YEiaKx1GgwFBeGdAfOUs6Y_4VSSrKp1jqeSqjMcd5rw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"quizname\": \"First Anna quiz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get ALL quizes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add question to owned quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZjU2M2FiOS1lM2E0LTQ2NWEtODE2YS04MmQwODBlMThhOTEiLCJpYXQiOjE3Mjc3OTM3ODMsImV4cCI6MTcyNzc5NzM4M30.s0rU1Lb2EI_MAXQGKK4jftJLYVI31NwmkkKJZ1DqcQM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": \"60b3ff8b-9698-429d-9443-abd10fdd495c\",\r\n  \"question\": \"What is the capital of France?\",\r\n  \"answer\": \"Paris\",\r\n  \"location\": {\r\n    \"longitude\": \"2.3522\",\r\n    \"latitude\": \"48.8566\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/quiz/question",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get specific quiz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/quiz/60b3ff8b-9698-429d-9443-abd10fdd495c",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"60b3ff8b-9698-429d-9443-abd10fdd495c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete owned quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZjU2M2FiOS1lM2E0LTQ2NWEtODE2YS04MmQwODBlMThhOTEiLCJpYXQiOjE3Mjc4Njk5NzIsImV4cCI6MTcyNzg3MzU3Mn0._mibkTvp3qBshp2jT0ZQl4AWxRgTZ8MLh5MZMczOzGY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/quiz/871056c3-71e7-480d-90dc-3b4d9ce63b08",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"871056c3-71e7-480d-90dc-3b4d9ce63b08"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add points to specific quiz - needs token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNmY2YmIyMS01NDY2LTQ4YjEtYjNiZS1kMGIyMzUxN2JmMWMiLCJpYXQiOjE3Mjc4NzM5NzMsImV4cCI6MTcyNzg3NzU3M30.NZCM9zht6bfRxmw0VIRXd81tZ5_eAWsvbNWw_JRZZwU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": \"1dcb5189-3328-45fc-98ad-3788c6f08bb6\",\r\n  \"points\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/leaderboard/addpoints",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"leaderboard",
+						"addpoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get leaderboard on specific quiz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tlda1kgqu6.execute-api.eu-north-1.amazonaws.com/leaderboard/1dcb5189-3328-45fc-98ad-3788c6f08bb6",
+					"protocol": "https",
+					"host": [
+						"tlda1kgqu6",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"leaderboard",
+						"1dcb5189-3328-45fc-98ad-3788c6f08bb6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
